@@ -2,7 +2,7 @@ import math
 sequences = []
 
 # add strings from fasta file that don't contain 'seq'
-with open('dotplot-example.fa') as file:
+with open('dotplot-example2.fa') as file:
     lines = file.readlines()
     for line in lines:
         if (line.find('seq') != 1):
@@ -26,35 +26,26 @@ row, col = (len(firstSequence)), (len(secondSequence))
 
 matrix = [[0 for x in range(col)] for y in range(row)] 
 print (firstSequence)
+gapPenalty = 6
 #longestLength = max(len(sequences[0]), len(sequences[1]))
 #print('longest length is', longestLength)
 
-counter = 0
 ## setup the initial negative values on the bound areas
 for i in range(len(firstSequence)):
     for j in range(len(secondSequence)):
         if (i == 0 or j == 0):
             matrix[i][j] = 0 + (-6 * max(j,i))
-gapNumber = abs(len(firstSequence) - len(secondSequence))
-## NOTE: this gap counter and array are incorrect. will need to do something else.
-gapCounter = 0
-gapArray = []
-print('whats the gap number', gapNumber)
 
 for i in range(len(firstSequence)):
     for j in range(len(secondSequence)):
         if (i != 0 and j != 0): # Make sure its not a bound area
-            lastValue = matrix[i-1][j-1] # get value of top left box relative to this one
-
-            if (firstSequence[i] != secondSequence[j] and gapCounter < gapNumber):
-                gapArray.append(j)
-                gapCounter += 1
-
-            if (firstSequence[i] == secondSequence[j] or firstSequence[i-1] == secondSequence[j] or j - 1 == 0 or i - 1 == 0 or gapCounter < gapNumber or j in gapArray):
-                matrix[i][j] = lastValue + 5
-
-            else:
-                matrix[i][j] = lastValue - 2
+            doesMatch = (firstSequence[i] == secondSequence[j])
+            print('does match?', doesMatch)
+            topLeft = matrix[i-1][j-1] # get value of top left box relative to this one
+            topLeft = topLeft + 5 if (doesMatch == True) else topLeft -2 
+            top = matrix[i-1][j] - 6
+            left = matrix[i][j-1] - 6
+            matrix[i][j] = max(topLeft, top, left)
                 
 
 for i in range(len(firstSequence)):
