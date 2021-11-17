@@ -39,5 +39,5 @@ for i in range(len(firstSequence)):
 del matrix[len(firstSequence) - 1]
 
 print('The score is', matrix[len(firstSequence)-2][len(secondSequence)-1])
-for i in range(len(firstSequence ) - 1):
-    print(matrix[i])
+#for i in range(len(firstSequence ) - 1):
+ #   print(matrix[i])
