@@ -13,8 +13,8 @@ gapPenalty = 1
 mismatchPenality = 1
 matchPenality = 1
 
-firstSequence = '0' + sequences[0]
-secondSequence = "0" + sequences[1]
+firstSequence =  '*' + sequences[0]
+secondSequence = '*' + sequences[1]
 row, col = (len(firstSequence)), (len(secondSequence))
 
 matrix = [[0 for x in range(col)] for y in range(row)] 
