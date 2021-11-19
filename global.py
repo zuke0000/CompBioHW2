@@ -13,6 +13,7 @@ gapPenalty = 1
 mismatchPenality = 1
 matchPenality = 1
 
+
 firstSequence = '0' + sequences[0]
 secondSequence = "0" + sequences[1]
 row, col = (len(firstSequence)), (len(secondSequence))
@@ -38,6 +39,6 @@ for i in range(len(firstSequence)):
             matrix[i][j] = max(topleft, top, left)
 del matrix[len(firstSequence) - 1]
 
-print('The score is', matrix[len(firstSequence)-2][len(secondSequence)-1])
+#print('The score is', matrix[len(firstSequence)-2][len(secondSequence)-1])
 #for i in range(len(firstSequence ) - 1):
  #   print(matrix[i])
