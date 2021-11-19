@@ -33,7 +33,6 @@ for i in range(len(firstSequence)):
             matrix[i][j] = 0
 highestScore = 0
 pos = [0, 0]
-counter = 0
 for i in range(len(firstSequence)):
     for j in range(len(secondSequence)):
         if (i != 0 and j != 0): # Make sure its not a bound area
@@ -46,9 +45,8 @@ for i in range(len(firstSequence)):
             if ((i != (len(firstSequence) - 1)) and localHighestScore > highestScore):
                 highestScore = localHighestScore
                 pos = [i, j]
-            if (localHighestScore == 72):
-                counter += 1
-# Backtrack from start position to find the length
+                
+# Backtrack from highest score position to find the length
 lengthFound = False
 lengthCounter = 0
 iPos = pos[0]
